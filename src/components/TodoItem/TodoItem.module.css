@@ -1,0 +1,38 @@
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+  padding: 1rem;
+  transition: 0.2s;
+}
+
+.todoItem:hover {
+  background: #F8F8F8;
+}
+
+.todoItem div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.todoItem div label, .todoItem div input, .todoItem div button {
+  cursor: pointer;
+}
+
+.todoItem div button {
+  background: none;
+  border: 0;
+  transition: color 0.2s;
+}
+
+.todoItem div button:hover {
+  color: #E0245E;
+}
+
+.todo {
+  accent-color: #0BEAA0;
+  width: 1.125rem;
+  height: 1.125rem;
+}

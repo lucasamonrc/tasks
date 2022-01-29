@@ -1,46 +1,29 @@
 import { FiTrash2 } from 'react-icons/fi'
 
+import { Header } from '../components/Header';
+import { Switch } from "../components/Switch";
+import { TodoItem } from "../components/TodoItem";
+
 import styles from '../styles/pages/Home.module.css';
 
 export default function Home() {
   return (
     <div>
-      <header className={styles.header}>
-        <nav>
-          <h1>✏️ Tasks</h1>
-          <button>logout</button>
-        </nav>
-      </header>
+      <Header logout={() => { }} />
 
       <section className={styles.container}>
         <header>
           <h2>To do:</h2>
 
           <section>
-            <div>
-              <input type="checkbox" className="switch" />
-              <label>{' '}Sort by date</label>
-            </div>
-
-            <div>
-              <input type="checkbox" className="switch" />
-              <label>{' '}Filter completed</label>
-            </div>
+            <Switch name="Sort by date" />
+            <Switch name="Filter completed" />
           </section>
         </header>
 
         <main>
           <ul className={styles.tasks}>
-            <li>
-              <div>
-                <input id="1" type="checkbox" className="todo" />
-                <label htmlFor="1">Some task</label>
-              </div>
-              <div>
-                <time>2020-01-01</time>
-                <button><FiTrash2 size={16} /></button>
-              </div>
-            </li>
+            <TodoItem id="1" description="some task" date="2022-01-29" />
           </ul>
         </main>
 
