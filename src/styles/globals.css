@@ -4,11 +4,71 @@
   box-sizing: border-box;
 }
 
+*::selection {
+  background: #0BEAA0;
+  color: #FFF;
+}
+
 html {
   font: 16px "Poppins", sans-serif;
   color: #121214;
 }
 
-input {
+button, input {
   font-family: "Poppins", sans-serif;
+}
+
+input.switch {
+  vertical-align: middle;
+  font-size: 1em;
+  appearance: none;
+  position: relative;
+  cursor: pointer;
+  margin: 0em 0.2em;
+  width: 1.4em;
+  height: 0.8em;
+}
+  
+input.switch:after {
+  vertical-align: middle;
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 1.4em;
+  height: 0.6em;
+  background-color: rgb(128,128,128); 
+  border-radius: 0.3em;
+}
+  
+  
+input.switch:before {
+  vertical-align: middle;
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 0.7em;
+  height: 0.7em;
+  z-index: 1;
+  left: 0;
+  top: -0.1em;
+  border: 1px solid rgb(128,128,128);
+  border-radius: 0.6em;
+  background-color: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  transition-duration: 0.3s;
+}
+  
+input.switch:checked:before {
+  left: 0.7em;
+  box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+  
+input.switch:checked:after {
+  background-color: #0BEAA0;
+}
+
+.todo {
+  accent-color: #0BEAA0;
+  width: 1.125rem;
+  height: 1.125rem;
 }
