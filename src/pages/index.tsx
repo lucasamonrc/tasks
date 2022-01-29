@@ -17,7 +17,7 @@ export default function Home() {
 
         <section className={styles.container}>
           <header>
-            <h2>To do:</h2>
+            <h2>Lucas Castro&apos;s To do:</h2>
 
             <section>
               <Switch name="Sort by date" />
