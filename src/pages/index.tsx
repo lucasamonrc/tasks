@@ -1,5 +1,3 @@
-import { FiTrash2 } from 'react-icons/fi'
-
 import { Header } from '../components/Header';
 import { Switch } from "../components/Switch";
 import { TodoItem } from "../components/TodoItem";
