@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font: 16px "Poppins", sans-serif;
+  color: #121214;
+}
+
+input {
+  font-family: "Poppins", sans-serif;
+}
