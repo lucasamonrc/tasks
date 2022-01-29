@@ -16,7 +16,7 @@ export default function SignIn() {
           <form>
             <div className={styles.field}>
               <label>Email</label>
-              <input type="text" placeholder="name@mail.com" required />
+              <input type="email" placeholder="name@mail.com" required />
             </div>
 
             <div className={styles.field}>
@@ -24,7 +24,7 @@ export default function SignIn() {
               <input type="password" placeholder="********" required />
             </div>
 
-            <button type="submit">Add task</button>
+            <button type="submit">Sign in</button>
           </form>
 
           <Link href="/signup">
