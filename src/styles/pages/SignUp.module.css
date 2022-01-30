@@ -74,3 +74,14 @@
 .box form button:hover {
   filter: brightness(0.95);
 }
+
+.box form button:disabled {
+  transition: none;
+  cursor: default;
+  background: #EBEBEB;
+  color: #A09CB1;
+}
+
+.box form button:disabled:hover {
+  filter: brightness(1);
+}

@@ -1,10 +1,12 @@
+import * as yup from 'yup';
 import Head from "next/head";
 import Link from "next/link";
-import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 
+import api from "../services/api";
 import styles from '../styles/pages/SignUp.module.css';
+import { useRouter } from "next/router";
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
@@ -18,9 +20,16 @@ const schema = yup.object().shape({
 
 export default function SignUp() {
   const { register, handleSubmit, formState } = useForm({ resolver: yupResolver(schema) });
+  const router = useRouter();
 
   const handleSignUp: SubmitHandler<FieldValues> = async (formData) => {
-    console.log(formData);
+    try {
+      await api.post('/users', formData);
+      alert('Account created successfully! Redirecting back to Sign In page...');
+      router.push('/signin');
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
@@ -77,7 +86,7 @@ export default function SignUp() {
               {!!formState.errors.confirmPassword && <small>{formState.errors.confirmPassword.message}</small>}
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={formState.isSubmitting}>{formState.isSubmitting ? 'Submitting...' : 'Submit'}</button>
           </form>
 
           <Link href="/signin">
