@@ -21,8 +21,10 @@ export default function SignIn() {
   const handleSignIn: SubmitHandler<FieldValues> = async (formData) => {
     try {
       const { data } = await api.post('/sessions', formData);
-      console.log(data);
-      // router.push('/');
+
+      localStorage.setItem('_auth', `Bearer ${data.token}`);
+
+      router.push('/');
     } catch (err) {
       console.error(err);
     }
