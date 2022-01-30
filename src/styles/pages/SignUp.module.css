@@ -38,7 +38,6 @@
 
 .field input {
   display: block;
-  margin-bottom: 1rem;
   width: 100%;
   background: #EBEBEB;
   color: #1C1C29;
@@ -49,6 +48,10 @@
 
 .field input::placeholder {
   color: #A09CB1;
+}
+
+.field small {
+  color: #E0245E;
 }
 
 .box form button {
