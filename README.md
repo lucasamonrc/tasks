@@ -1,4 +1,4 @@
-# [✏️ Tasks]
+# ✏️ Tasks
 
 A simple todo app that implements authentication and data persistence.
 
