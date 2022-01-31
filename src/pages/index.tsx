@@ -35,6 +35,7 @@ interface User {
 
 export default function Home() {
   const router = useRouter();
+
   const [user, setUser] = useState<User>({
     id: '',
     name: '',
@@ -42,6 +43,7 @@ export default function Home() {
     todos: [],
   });
   const [newTodo, setNewTodo] = useState({ description: '', date: '' });
+  const [options, setOptions] = useState({ filter: false, sort: false });
 
   useEffect(() => {
     async function initUserProfile() {
@@ -153,6 +155,15 @@ export default function Home() {
     });
   }
 
+  function toggleSort() {
+    setOptions({ ...options, sort: !options.sort });
+  }
+
+  function toggleFilter() {
+    setOptions({ ...options, filter: !options.filter });
+
+  }
+
   return (
     <>
       <Head>
@@ -169,14 +180,54 @@ export default function Home() {
             <h2>{user?.name}&apos;s To do:</h2>
 
             <section>
-              <Switch name="Sort by date" />
-              <Switch name="Filter completed" />
+              <Switch name="Sort by date" on={options.sort} toggle={toggleSort} />
+              <Switch name="Filter completed" on={options.filter} toggle={toggleFilter} />
             </section>
           </header>
 
           <main>
             <ul className={styles.tasks}>
-              {user?.todos.map((todo) => (
+              {options.filter && options.sort && [...user?.todos
+                .filter((todo) => !todo.completed)]
+                .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                .map((todo) => (
+                  <TodoItem
+                    key={todo.id}
+                    id={todo.id}
+                    description={todo.description}
+                    date={todo.date}
+                    completed={todo.completed}
+                    handleComplete={handleComplete}
+                    handleDelete={handleDelete}
+                  />
+                ))}
+              {!options.filter && options.sort && [...user?.todos]
+                .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                .map((todo) => (
+                  <TodoItem
+                    key={todo.id}
+                    id={todo.id}
+                    description={todo.description}
+                    date={todo.date}
+                    completed={todo.completed}
+                    handleComplete={handleComplete}
+                    handleDelete={handleDelete}
+                  />
+                ))}
+              {options.filter && !options.sort && user?.todos
+                .filter((todo) => !todo.completed)
+                .map((todo) => (
+                  <TodoItem
+                    key={todo.id}
+                    id={todo.id}
+                    description={todo.description}
+                    date={todo.date}
+                    completed={todo.completed}
+                    handleComplete={handleComplete}
+                    handleDelete={handleDelete}
+                  />
+                ))}
+              {!options.filter && !options.sort && user?.todos.map((todo) => (
                 <TodoItem
                   key={todo.id}
                   id={todo.id}
