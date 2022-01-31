@@ -46,7 +46,9 @@ const handler: NextApiHandler = async (request, response) => {
 
       const { data: user } = await supabase.from('users').select('*').eq('id', id).single();
 
-      user.todos = [];
+      const { data: todos } = await supabase.from('todos').select('*').eq('user_id', id);
+
+      user.todos = todos;
 
       return response.status(200).json(user);
     } catch (err) {
